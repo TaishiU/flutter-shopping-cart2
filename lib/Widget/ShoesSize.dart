@@ -31,8 +31,7 @@ class _ShoesSizeState extends State<ShoesSize> {
                   height: 40,
                   width: 40,
                   decoration: BoxDecoration(
-                    color:
-                        _selected == i ? Colors.orange : Colors.grey.shade300,
+                    color: _selected == i ? Colors.black : Colors.grey.shade300,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Center(

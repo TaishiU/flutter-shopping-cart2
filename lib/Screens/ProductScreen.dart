@@ -69,6 +69,44 @@ class _ProductScreenState extends State<ProductScreen> {
                       ),
                     ),
                     ShoesSize(shoes: widget.shoes),
+                    SizedBox(height: 30),
+                    Row(
+                      children: [
+                        Container(
+                          height: 65,
+                          width: 65,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade300,
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: Icon(
+                            Icons.bookmark_border,
+                            size: 30,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+                        SizedBox(width: 15),
+                        Expanded(
+                          child: Container(
+                            height: 65,
+                            //width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'カートに追加',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
