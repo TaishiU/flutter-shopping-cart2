@@ -43,7 +43,7 @@ class ShoesContainer extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            Text('¥ ${shoes.price}'),
+            Text('¥${shoes.price}'),
           ],
         ),
       ),
