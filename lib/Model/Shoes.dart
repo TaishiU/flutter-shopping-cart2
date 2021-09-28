@@ -4,7 +4,7 @@ class Shoes {
   String id;
   String name;
   String description;
-  int price;
+  String price;
   Map<String, String> images;
   Map<String, String> size;
 
