@@ -5,6 +5,7 @@ class Shoes {
   String name;
   String description;
   String price;
+  String type;
   Map<String, String> images;
   Map<String, String> size;
 
@@ -13,6 +14,7 @@ class Shoes {
     required this.name,
     required this.description,
     required this.price,
+    required this.type,
     required this.images,
     required this.size,
   });
@@ -23,6 +25,7 @@ class Shoes {
       name: doc['name'],
       description: doc['description'],
       price: doc['price'],
+      type: doc['type'],
       images: Map<String, String>.from(doc['images']),
       size: Map<String, String>.from(doc['size']),
     );

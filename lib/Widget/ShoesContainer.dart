@@ -12,40 +12,54 @@ class ShoesContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 0),
-      child: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ProductScreen(shoes: shoes),
-            ),
-          );
-        },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 150,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                image: DecorationImage(
-                  image: NetworkImage(shoes.images['0']!),
-                  fit: BoxFit.cover,
-                ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductScreen(shoes: shoes),
+          ),
+        );
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 150,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(
+                image: NetworkImage(shoes.images['0']!),
+                fit: BoxFit.cover,
               ),
             ),
-            Text(
-              shoes.name,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+          ),
+          Text(
+            shoes.name,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
             ),
-            SizedBox(height: 10),
-            Text('¥${shoes.price}'),
-          ],
-        ),
+          ),
+          Text(
+            shoes.type,
+            style: TextStyle(
+              color: Colors.grey,
+            ),
+          ),
+          SizedBox(height: 5),
+          Text(
+            '¥${shoes.price}',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Text(
+            '(税込)',
+            style: TextStyle(
+              color: Colors.grey,
+            ),
+          ),
+        ],
       ),
     );
   }
