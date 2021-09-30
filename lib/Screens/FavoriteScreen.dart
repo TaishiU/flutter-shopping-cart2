@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shopping_cart2/Firebase/Auth.dart';
 import 'package:shopping_cart2/Screens/WelcomeScreen.dart';
 
-class SavedScreen extends StatelessWidget {
-  const SavedScreen({Key? key}) : super(key: key);
+class FavoriteScreen extends StatelessWidget {
+  const FavoriteScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

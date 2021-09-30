@@ -3,6 +3,7 @@ import 'package:shopping_cart2/Model/Shoes.dart';
 
 class ShoesImageContainer extends StatefulWidget {
   final Shoes shoes;
+
   ShoesImageContainer({
     Key? key,
     required this.shoes,

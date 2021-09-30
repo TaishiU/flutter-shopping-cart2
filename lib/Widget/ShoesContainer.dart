@@ -4,9 +4,11 @@ import 'package:shopping_cart2/Model/Shoes.dart';
 import 'package:shopping_cart2/Screens/ProductScreen.dart';
 
 class ShoesContainer extends StatelessWidget {
+  final String currentUserId;
   final Shoes shoes;
   ShoesContainer({
     Key? key,
+    required this.currentUserId,
     required this.shoes,
   }) : super(key: key);
 
@@ -17,7 +19,10 @@ class ShoesContainer extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductScreen(shoes: shoes),
+            builder: (context) => ProductScreen(
+              currentUserId: currentUserId,
+              shoes: shoes,
+            ),
           ),
         );
       },

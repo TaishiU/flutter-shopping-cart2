@@ -7,13 +7,17 @@ import 'package:shopping_cart2/Screens/WelcomeScreen.dart';
 import 'package:shopping_cart2/Widget/ShoesContainer.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final String currentUserId;
+  HomeScreen({
+    Key? key,
+    required this.currentUserId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // // アスペクト比を計算する
     var size = MediaQuery.of(context).size;
-    final double itemHeight = (size.height - kToolbarHeight - 320) / 2;
+    final double itemHeight = (size.height - kToolbarHeight - 220) / 2;
     final double itemWidth = size.width / 2;
 
     return Scaffold(
@@ -66,7 +70,10 @@ class HomeScreen extends StatelessWidget {
                   childAspectRatio: (itemWidth / itemHeight),
                   children: allProducts.map((product) {
                     Shoes shoes = Shoes.fromDoc(product);
-                    return ShoesContainer(shoes: shoes);
+                    return ShoesContainer(
+                      currentUserId: currentUserId,
+                      shoes: shoes,
+                    );
                   }).toList(),
                 ),
               );
