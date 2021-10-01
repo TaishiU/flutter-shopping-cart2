@@ -21,7 +21,7 @@ class ShoesContainer extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => ProductScreen(
               currentUserId: currentUserId,
-              shoes: shoes,
+              shoesId: shoes.shoesId,
             ),
           ),
         );

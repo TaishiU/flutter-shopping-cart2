@@ -23,7 +23,7 @@ class _FeedScreenState extends State<FeedScreen> {
     return Scaffold(
       body: [
         HomeScreen(currentUserId: widget.currentUserId),
-        FavoriteScreen(),
+        FavoriteScreen(currentUserId: widget.currentUserId),
         SearchScreen(),
       ].elementAt(_selectedTab),
       bottomNavigationBar: CupertinoTabBar(

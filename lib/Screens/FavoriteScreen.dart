@@ -1,16 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_cart2/Constants/Constants.dart';
 import 'package:shopping_cart2/Firebase/Auth.dart';
+import 'package:shopping_cart2/Model/FavoriteAndCart.dart';
+import 'package:shopping_cart2/Screens/ProductScreen.dart';
 import 'package:shopping_cart2/Screens/WelcomeScreen.dart';
 
 class FavoriteScreen extends StatelessWidget {
-  const FavoriteScreen({Key? key}) : super(key: key);
+  final String currentUserId;
+
+  FavoriteScreen({
+    Key? key,
+    required this.currentUserId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('SavedScreen'),
+        title: Text('FavoriteScreen'),
         actions: [
           IconButton(
             icon: Icon(
@@ -28,6 +37,104 @@ class FavoriteScreen extends StatelessWidget {
             },
           ),
         ],
+      ),
+      body: StreamBuilder(
+        stream: favoritesRef
+            .doc(currentUserId)
+            .collection('favoriteShoes')
+            .orderBy('timestamp', descending: true)
+            .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          List<DocumentSnapshot> favoriteShoesList = snapshot.data!.docs;
+          return ListView(
+            physics: BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
+            children: favoriteShoesList.map((favoriteShoes) {
+              FavoriteAndCart favorite = FavoriteAndCart.fromDoc(favoriteShoes);
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProductScreen(
+                              currentUserId: currentUserId,
+                              shoesId: favorite.shoesId,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 100,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                image: DecorationImage(
+                                  image: NetworkImage(favorite.image),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    favorite.name,
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                    ),
+                                  ),
+                                  Text(
+                                    favorite.type,
+                                    style: TextStyle(
+                                        // fontSize: 20,
+                                        ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'サイズ  ${favorite.size}',
+                                        style: TextStyle(
+                                            // fontSize: 20,
+                                            ),
+                                      ),
+                                      Text(
+                                        '¥${favorite.price}',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
+          );
+        },
       ),
     );
   }

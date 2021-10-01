@@ -17,10 +17,11 @@ class Firestore {
 
   /*Favoriteに追加*/
   Future<void> addToFavorite({
+    required String currentUserId,
     required FavoriteAndCart favorite,
   }) async {
     await favoritesRef
-        .doc(favorite.currentUserId)
+        .doc(currentUserId)
         .collection('favoriteShoes')
         .doc(favorite.shoesId)
         .set({
@@ -30,6 +31,7 @@ class Firestore {
       'type': favorite.type,
       'image': favorite.image,
       'size': favorite.size,
+      'timestamp': favorite.timestamp,
     });
   }
 
