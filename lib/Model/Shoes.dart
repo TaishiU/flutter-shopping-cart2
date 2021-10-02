@@ -1,33 +1,33 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Shoes {
-  String shoesId;
-  String name;
   String description;
-  String price;
-  String type;
   Map<String, String> images;
+  String name;
+  String price;
+  String shoesId;
   Map<String, String> size;
+  String type;
 
   Shoes({
-    required this.shoesId,
-    required this.name,
     required this.description,
-    required this.price,
-    required this.type,
     required this.images,
+    required this.name,
+    required this.price,
+    required this.shoesId,
     required this.size,
+    required this.type,
   });
 
   factory Shoes.fromDoc(DocumentSnapshot doc) {
     return Shoes(
-      shoesId: doc['shoesId'],
-      name: doc['name'],
       description: doc['description'],
-      price: doc['price'],
-      type: doc['type'],
       images: Map<String, String>.from(doc['images']),
+      name: doc['name'],
+      price: doc['price'],
+      shoesId: doc['shoesId'],
       size: Map<String, String>.from(doc['size']),
+      type: doc['type'],
     );
   }
 }

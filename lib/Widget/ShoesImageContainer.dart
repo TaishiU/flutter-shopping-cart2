@@ -19,7 +19,7 @@ class _ShoesImageContainerState extends State<ShoesImageContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400.0,
+      height: 350,
       child: Stack(
         children: [
           PageView(
@@ -31,7 +31,7 @@ class _ShoesImageContainerState extends State<ShoesImageContainer> {
             children: [
               for (var i = 0; i < widget.shoes.images.length; i++)
                 Container(
-                  height: 400,
+                  height: 350,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(widget.shoes.images['$i']!),
@@ -55,11 +55,11 @@ class _ShoesImageContainerState extends State<ShoesImageContainer> {
                     margin: EdgeInsets.symmetric(
                       horizontal: 5.0,
                     ),
-                    width: _selectedPage == i ? 35.0 : 10.0,
+                    width: _selectedPage == i ? 25 : 10,
                     height: 10.0,
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(12.0),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   )
               ],
