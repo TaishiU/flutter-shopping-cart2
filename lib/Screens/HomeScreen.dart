@@ -21,14 +21,22 @@ class HomeScreen extends StatelessWidget {
     final double itemWidth = size.width / 2;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('HomeScreen'),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          'Home',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
         actions: [
           IconButton(
             icon: Icon(
               Icons.logout,
-              color: Colors.white,
+              color: Colors.black,
             ),
             onPressed: () {
               Auth().logout();

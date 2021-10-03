@@ -22,6 +22,7 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   int _selectedIndexOfSize = 0;
   bool _isFavorite = false;
+  // String _selectedSize = '0';
 
   @override
   void initState() {
@@ -93,10 +94,14 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.shoesId);
-
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: BackButton(
+          color: Colors.black,
+        ),
+      ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(
           parent: AlwaysScrollableScrollPhysics(),

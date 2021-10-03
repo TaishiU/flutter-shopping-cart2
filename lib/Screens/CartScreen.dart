@@ -2,20 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:shopping_cart2/Firebase/Auth.dart';
 import 'package:shopping_cart2/Screens/WelcomeScreen.dart';
 
-class SearchScreen extends StatelessWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+class CartScreen extends StatelessWidget {
+  const CartScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('SearchScreen'),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          'Cart',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
         actions: [
           IconButton(
             icon: Icon(
               Icons.logout,
-              color: Colors.white,
+              color: Colors.black,
             ),
             onPressed: () {
               Auth().logout();

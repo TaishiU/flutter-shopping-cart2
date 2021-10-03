@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_cart2/Screens/CartScreen.dart';
 import 'package:shopping_cart2/Screens/FavoriteScreen.dart';
 import 'package:shopping_cart2/Screens/HomeScreen.dart';
-import 'package:shopping_cart2/Screens/SearchScreen.dart';
 
 class FeedScreen extends StatefulWidget {
   final String currentUserId;
@@ -24,7 +24,7 @@ class _FeedScreenState extends State<FeedScreen> {
       body: [
         HomeScreen(currentUserId: widget.currentUserId),
         FavoriteScreen(currentUserId: widget.currentUserId),
-        SearchScreen(),
+        CartScreen(),
       ].elementAt(_selectedTab),
       bottomNavigationBar: CupertinoTabBar(
         onTap: (index) {
@@ -37,7 +37,7 @@ class _FeedScreenState extends State<FeedScreen> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home)),
           BottomNavigationBarItem(icon: Icon(Icons.favorite_border)),
-          BottomNavigationBarItem(icon: Icon(Icons.search)),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart)),
         ],
       ),
     );
