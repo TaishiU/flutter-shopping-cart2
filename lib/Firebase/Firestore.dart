@@ -57,4 +57,24 @@ class Firestore {
         .get();
     return isFavoriteSnap.exists;
   }
+
+  /*Cartに追加*/
+  Future<void> addToCart({
+    required String currentUserId,
+    required FavoriteAndCart cart,
+  }) async {
+    await cartRef
+        .doc(currentUserId)
+        .collection('cartShoes')
+        .doc(cart.shoesId)
+        .set({
+      'shoesId': cart.shoesId,
+      'name': cart.name,
+      'price': cart.price,
+      'type': cart.type,
+      'image': cart.image,
+      'size': cart.size,
+      'timestamp': cart.timestamp,
+    });
+  }
 }

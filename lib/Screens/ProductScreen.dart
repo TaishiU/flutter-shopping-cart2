@@ -22,7 +22,6 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   int _selectedIndexOfSize = 0;
   bool _isFavorite = false;
-  // String _selectedSize = '0';
 
   @override
   void initState() {
@@ -90,6 +89,30 @@ class _ProductScreenState extends State<ProductScreen> {
         favorite: favoriteAndCart,
       );
     }
+  }
+
+  cartShoes({
+    required String currentUserId,
+    required String shoesId,
+    required String name,
+    required String price,
+    required String type,
+    required String image,
+    required String size,
+  }) async {
+    FavoriteAndCart favoriteAndCart = FavoriteAndCart(
+      shoesId: shoesId,
+      name: name,
+      price: price,
+      type: type,
+      image: image,
+      size: size,
+      timestamp: Timestamp.fromDate(DateTime.now()),
+    );
+    Firestore().addToCart(
+      currentUserId: widget.currentUserId,
+      cart: favoriteAndCart,
+    );
   }
 
   @override
@@ -243,11 +266,7 @@ class _ProductScreenState extends State<ProductScreen> {
                               Expanded(
                                 child: Container(
                                   height: 65,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  child: Center(
+                                  child: ElevatedButton(
                                     child: Text(
                                       'カートに追加',
                                       style: TextStyle(
@@ -255,6 +274,33 @@ class _ProductScreenState extends State<ProductScreen> {
                                         fontSize: 20,
                                       ),
                                     ),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.black,
+                                      onPrimary: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      final snackBar = SnackBar(
+                                        content: Text(
+                                          'カートに追加しました！',
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      );
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
+
+                                      cartShoes(
+                                        currentUserId: widget.currentUserId,
+                                        shoesId: shoes.shoesId,
+                                        name: shoes.name,
+                                        price: shoes.price,
+                                        type: shoes.type,
+                                        image: shoes.images['0']!,
+                                        size: _selectedSize,
+                                      );
+                                    },
                                   ),
                                 ),
                               ),

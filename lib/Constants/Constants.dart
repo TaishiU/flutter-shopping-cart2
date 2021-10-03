@@ -4,3 +4,4 @@ final _firestore = FirebaseFirestore.instance;
 final usersRef = _firestore.collection('users');
 final productsRef = _firestore.collection('products');
 final favoritesRef = _firestore.collection('favorites');
+final cartRef = _firestore.collection('cart');
