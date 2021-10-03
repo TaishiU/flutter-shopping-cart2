@@ -24,7 +24,7 @@ class _FeedScreenState extends State<FeedScreen> {
       body: [
         HomeScreen(currentUserId: widget.currentUserId),
         FavoriteScreen(currentUserId: widget.currentUserId),
-        CartScreen(),
+        CartScreen(currentUserId: widget.currentUserId),
       ].elementAt(_selectedTab),
       bottomNavigationBar: CupertinoTabBar(
         onTap: (index) {

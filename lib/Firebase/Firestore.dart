@@ -77,4 +77,15 @@ class Firestore {
       'timestamp': cart.timestamp,
     });
   }
+
+  Future<void> deleteFromCart({
+    required String currentUserId,
+    required String shoesId,
+  }) async {
+    await cartRef
+        .doc(currentUserId)
+        .collection('cartShoes')
+        .doc(shoesId)
+        .delete();
+  }
 }

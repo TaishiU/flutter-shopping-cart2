@@ -65,7 +65,7 @@ class FavoriteScreen extends StatelessWidget {
               parent: AlwaysScrollableScrollPhysics(),
             ),
             children: favoriteShoesList.map((favoriteShoes) {
-              FavoriteAndCart favorite = FavoriteAndCart.fromDoc(favoriteShoes);
+              FavoriteAndCart cart = FavoriteAndCart.fromDoc(favoriteShoes);
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: Column(
@@ -77,12 +77,13 @@ class FavoriteScreen extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) => ProductScreen(
                               currentUserId: currentUserId,
-                              shoesId: favorite.shoesId,
+                              shoesId: cart.shoesId,
                             ),
                           ),
                         );
                       },
                       child: Container(
+                        color: Colors.transparent,
                         child: Row(
                           children: [
                             Container(
@@ -91,7 +92,7 @@ class FavoriteScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 image: DecorationImage(
-                                  image: NetworkImage(favorite.image),
+                                  image: NetworkImage(cart.image),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -110,7 +111,7 @@ class FavoriteScreen extends StatelessWidget {
                                             MediaQuery.of(context).size.width *
                                                 0.5,
                                         child: Text(
-                                          favorite.name,
+                                          cart.name,
                                           style: TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold,
@@ -121,7 +122,7 @@ class FavoriteScreen extends StatelessWidget {
                                         onTap: () {
                                           Firestore().deleteFromFavorite(
                                             currentUserId: currentUserId,
-                                            shoesId: favorite.shoesId,
+                                            shoesId: cart.shoesId,
                                           );
                                         },
                                         child: Icon(
@@ -132,7 +133,7 @@ class FavoriteScreen extends StatelessWidget {
                                     ],
                                   ),
                                   Text(
-                                    favorite.type,
+                                    cart.type,
                                     style: TextStyle(
                                       color: Colors.grey,
                                     ),
@@ -143,13 +144,13 @@ class FavoriteScreen extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'サイズ  ${favorite.size}',
+                                        'サイズ  ${cart.size}',
                                         style: TextStyle(
                                             //color: Colors.grey,
                                             ),
                                       ),
                                       Text(
-                                        '¥${favorite.price}',
+                                        '¥${cart.price}',
                                         style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
