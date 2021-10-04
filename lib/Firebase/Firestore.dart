@@ -88,4 +88,15 @@ class Firestore {
         .doc(shoesId)
         .delete();
   }
+
+  Future<QuerySnapshot<Map<String, dynamic>>> getFromCart({
+    required String currentUserId,
+  }) async {
+    QuerySnapshot<Map<String, dynamic>> cartShoesList = await cartRef
+        .doc(currentUserId)
+        .collection('cartShoes')
+        .orderBy('timestamp', descending: true)
+        .get();
+    return cartShoesList;
+  }
 }

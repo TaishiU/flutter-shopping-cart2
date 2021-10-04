@@ -1,17 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FavoriteAndCart {
-  //String currentUserId;
   String shoesId;
   String name;
-  String price;
+  int price;
   String type;
   String image;
   String size;
   Timestamp timestamp;
 
   FavoriteAndCart({
-    //required this.currentUserId,
     required this.shoesId,
     required this.name,
     required this.price,
@@ -23,7 +21,6 @@ class FavoriteAndCart {
 
   factory FavoriteAndCart.fromDoc(DocumentSnapshot doc) {
     return FavoriteAndCart(
-      //currentUserId: doc['currentUserId'],
       shoesId: doc['shoesId'],
       name: doc['name'],
       price: doc['price'],

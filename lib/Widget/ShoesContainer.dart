@@ -6,10 +6,12 @@ import 'package:shopping_cart2/Screens/ProductScreen.dart';
 class ShoesContainer extends StatelessWidget {
   final String currentUserId;
   final Shoes shoes;
+  final String shoesPrice;
   ShoesContainer({
     Key? key,
     required this.currentUserId,
     required this.shoes,
+    required this.shoesPrice,
   }) : super(key: key);
 
   @override
@@ -22,6 +24,7 @@ class ShoesContainer extends StatelessWidget {
             builder: (context) => ProductScreen(
               currentUserId: currentUserId,
               shoesId: shoes.shoesId,
+              shoesPrice: shoesPrice,
             ),
           ),
         );
@@ -53,7 +56,7 @@ class ShoesContainer extends StatelessWidget {
           ),
           SizedBox(height: 5),
           Text(
-            '¥${shoes.price}',
+            '¥$shoesPrice',
             style: TextStyle(
               fontWeight: FontWeight.bold,
             ),

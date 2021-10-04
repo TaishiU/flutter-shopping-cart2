@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:shopping_cart2/Constants/Constants.dart';
 import 'package:shopping_cart2/Firebase/Auth.dart';
 import 'package:shopping_cart2/Model/Shoes.dart';
@@ -78,9 +79,15 @@ class HomeScreen extends StatelessWidget {
                   childAspectRatio: (itemWidth / itemHeight),
                   children: allProducts.map((product) {
                     Shoes shoes = Shoes.fromDoc(product);
+
+                    /*シューズの価格をintからStringに置き換え*/
+                    final formatter = NumberFormat("#,###");
+                    var shoesPrice = formatter.format(shoes.price);
+
                     return ShoesContainer(
                       currentUserId: currentUserId,
                       shoes: shoes,
+                      shoesPrice: shoesPrice,
                     );
                   }).toList(),
                 ),

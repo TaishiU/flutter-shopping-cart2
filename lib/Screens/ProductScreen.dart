@@ -9,10 +9,12 @@ import 'package:shopping_cart2/Widget/ShoesImageContainer.dart';
 class ProductScreen extends StatefulWidget {
   final String currentUserId;
   final String shoesId;
+  final String shoesPrice;
   ProductScreen({
     Key? key,
     required this.currentUserId,
     required this.shoesId,
+    required this.shoesPrice,
   }) : super(key: key);
 
   @override
@@ -58,7 +60,7 @@ class _ProductScreenState extends State<ProductScreen> {
     required String currentUserId,
     required String shoesId,
     required String name,
-    required String price,
+    required int price,
     required String type,
     required String image,
     required String size,
@@ -95,7 +97,7 @@ class _ProductScreenState extends State<ProductScreen> {
     required String currentUserId,
     required String shoesId,
     required String name,
-    required String price,
+    required int price,
     required String type,
     required String image,
     required String size,
@@ -167,7 +169,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            '¥${shoes.price}',
+                            '¥${widget.shoesPrice}',
                             style: TextStyle(
                               fontSize: 20,
                             ),

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:shopping_cart2/Constants/Constants.dart';
 import 'package:shopping_cart2/Firebase/Auth.dart';
 import 'package:shopping_cart2/Firebase/Firestore.dart';
@@ -65,7 +66,12 @@ class FavoriteScreen extends StatelessWidget {
               parent: AlwaysScrollableScrollPhysics(),
             ),
             children: favoriteShoesList.map((favoriteShoes) {
-              FavoriteAndCart cart = FavoriteAndCart.fromDoc(favoriteShoes);
+              FavoriteAndCart favorite = FavoriteAndCart.fromDoc(favoriteShoes);
+
+              /*シューズの価格をintからStringに置き換え*/
+              final formatter = NumberFormat("#,###");
+              var shoesPrice = formatter.format(favorite.price);
+
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: Column(
@@ -77,7 +83,8 @@ class FavoriteScreen extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) => ProductScreen(
                               currentUserId: currentUserId,
-                              shoesId: cart.shoesId,
+                              shoesId: favorite.shoesId,
+                              shoesPrice: shoesPrice,
                             ),
                           ),
                         );
@@ -92,7 +99,7 @@ class FavoriteScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 image: DecorationImage(
-                                  image: NetworkImage(cart.image),
+                                  image: NetworkImage(favorite.image),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -111,7 +118,7 @@ class FavoriteScreen extends StatelessWidget {
                                             MediaQuery.of(context).size.width *
                                                 0.5,
                                         child: Text(
-                                          cart.name,
+                                          favorite.name,
                                           style: TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold,
@@ -122,7 +129,7 @@ class FavoriteScreen extends StatelessWidget {
                                         onTap: () {
                                           Firestore().deleteFromFavorite(
                                             currentUserId: currentUserId,
-                                            shoesId: cart.shoesId,
+                                            shoesId: favorite.shoesId,
                                           );
                                         },
                                         child: Icon(
@@ -133,7 +140,7 @@ class FavoriteScreen extends StatelessWidget {
                                     ],
                                   ),
                                   Text(
-                                    cart.type,
+                                    favorite.type,
                                     style: TextStyle(
                                       color: Colors.grey,
                                     ),
@@ -144,13 +151,13 @@ class FavoriteScreen extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'サイズ  ${cart.size}',
+                                        'サイズ  ${favorite.size}',
                                         style: TextStyle(
                                             //color: Colors.grey,
                                             ),
                                       ),
                                       Text(
-                                        '¥${cart.price}',
+                                        '¥$shoesPrice',
                                         style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
