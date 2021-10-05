@@ -284,15 +284,6 @@ class _ProductScreenState extends State<ProductScreen> {
                                       ),
                                     ),
                                     onPressed: () {
-                                      final snackBar = SnackBar(
-                                        content: Text(
-                                          'カートに追加しました！',
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      );
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(snackBar);
-
                                       cartShoes(
                                         currentUserId: widget.currentUserId,
                                         shoesId: shoes.shoesId,
