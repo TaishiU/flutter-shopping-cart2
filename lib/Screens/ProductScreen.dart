@@ -273,7 +273,8 @@ class _ProductScreenState extends State<ProductScreen> {
                                       'カートに追加',
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 20,
+                                        fontSize: 18,
+                                        //fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     style: ElevatedButton.styleFrom(

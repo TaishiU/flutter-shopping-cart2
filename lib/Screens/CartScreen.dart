@@ -265,7 +265,8 @@ class _CartScreenState extends State<CartScreen> {
                   'ご購入の手続きに進む',
                   style: TextStyle(
                     color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                    //fontWeight: FontWeight.bold,
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
